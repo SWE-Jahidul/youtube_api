@@ -8,13 +8,25 @@ const usePlaylist = () => {
     favorites: [],
   });
 
-  const getPlayListById = async (playListId , force= false) => {
-    
-    if( state.playLists[playListId] && !force ){
-      return ;
+  const [error, setError] = useState("");
+  const [loding, setloding] = useState(false);
+
+  const getPlayListById = async (playListId, force = false) => {
+    if (state.playLists[playListId] && !force) {
+      return;
     }
-    
-    let result =await getPlayList(playListId);
+
+    setloding(true);
+    let result;
+    try {
+      result = await getPlayList(playListId);
+      setError("");
+    } catch (e) {
+      setError(e.response?.data?.error?.message || "Something wenr wrong!");
+    } finally {
+      setloding(false);
+    }
+
     let cid, ct;
 
     result = result.map((item) => {
@@ -48,12 +60,12 @@ const usePlaylist = () => {
       ...prev,
       playLists: {
         ...prev.playLists,
-        [playListId]:{
-          items : result, 
-          playListId : playListId,
-          channelId : cid,
-          channelTitle :ct, 
-        }
+        [playListId]: {
+          items: result,
+          playListId: playListId,
+          channelId: cid,
+          channelTitle: ct,
+        },
       },
     }));
   };
@@ -80,6 +92,8 @@ const usePlaylist = () => {
     playLists: state.playLists,
     favorites: getPlayListByIds(state.favorites),
     recentPlayLists: getPlayListByIds(state.recentPlayLists),
+    error,
+    loding,
     getPlayListById,
     addToRecent,
     addToFavorites,
@@ -87,9 +101,3 @@ const usePlaylist = () => {
 };
 
 export default usePlaylist;
-
-// useEffect(() => {
-//   getPlayList("PLC3y8-rFHvwgg3vaYJgHGnModB54rxOk3").then((res) =>
-//     console.log(res)
-//   );
-// }, []);
