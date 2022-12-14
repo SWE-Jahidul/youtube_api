@@ -8,7 +8,7 @@ import { Button, Container } from "@mui/material";
 import { useState } from "react";
 import PlaylistFrom from "../playlist-form";
 
-const Navbar = () => {
+const Navbar = ({ getPlayListById }) => {
   const [open, setOpen] = useState(false);
 
   const handleClickOpen = () => {
@@ -20,9 +20,9 @@ const Navbar = () => {
   };
 
   const getPlayListId = (playlistId) => {
-    
-    console.log('play list id ' , playlistId);
+    getPlayListById(playlistId);
   };
+
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="fixed" color="default" sx={{ py: 2 }}>

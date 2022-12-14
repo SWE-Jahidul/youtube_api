@@ -1,4 +1,4 @@
-import * as React from "react";
+import { useState } from "react";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import Dialog from "@mui/material/Dialog";
@@ -6,10 +6,9 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
-import { useState } from "react";
 
-const PlaylistFrom = (open, handleClose, getPlayListId) => {
-  const [state, setState] = useState("");
+const PlaylistFrom = ({open, handleClose, getPlayListId}) => {
+  const [state, setState] = useState('');
 
   const handleSubmit = () => {
     // TODO handle url later
@@ -17,13 +16,13 @@ const PlaylistFrom = (open, handleClose, getPlayListId) => {
       alert("Invalid State");
     } else {
       getPlayListId(state);
-      setState("");
+      setState('');
       handleClose();
-    }
+    } 
   };
 
   return (
-    <Dialog open={open} onClose={handleClose}>
+    <Dialog onClose={handleClose} open ={open} >
       <DialogTitle>Add PlayList </DialogTitle>
       <DialogContent>
         <DialogContentText>
@@ -32,12 +31,14 @@ const PlaylistFrom = (open, handleClose, getPlayListId) => {
           the playlist information.
         </DialogContentText>
         <TextField
+        
           autoFocus
           margin="dense"
           label="Playlist ID or Link"
           fullWidth
           variant="standard"
           onChange={(e) => setState(e.target.value)}
+
         />
       </DialogContent>
       <DialogActions>
