@@ -1,4 +1,5 @@
-import { CssBaseline } from "@mui/material";
+import { CssBaseline, Grid } from "@mui/material";
+import { Container, Stack } from "@mui/system";
 import { useEffect } from "react";
 import getPlayList from "./api";
 import Navbar from "./components/navbar";
@@ -6,34 +7,36 @@ import PlayListCard from "./components/playlist-card-item";
 import usePlaylist from "./hooks/usePlaylist";
 
 const App = () => {
- const { getPlayListById, playLists, error, loding } = usePlaylist();
+  const { getPlayListById, playLists, error, loding } = usePlaylist();
 
-
-const playListArray = Object.values(playLists)
-
+  const playListArray = Object.values(playLists);
 
   return (
     <>
       <CssBaseline />
-
-      <div>
+      <Container maxWidth="lg" sx={{ marginTop: 16 }}>
         <Navbar getPlayListById={getPlayListById} />
-    
-    {
-     playListArray.length > 0 && (
-
-      playListArray.map((item) => <PlayListCard  
-      
-      // key={item.id}
-      // playlistThumbnil={item.playlistThumbnil}
-      // playlistTitle = { item.playListArray }
-      // channelTitle = { item.channelTitle}
-      
-      /> )
-     )
-    }
-    
-      </div>
+        {playListArray.length > 0 && (
+          <Grid
+            Container
+            sx={{
+              alignItems: "stretch",
+              gap:2
+            }}
+          >
+            {playListArray.map((item) => (
+              <Grid item sx={12} md={6} lg={4}>
+                <PlayListCard
+                  key={item.id}
+                  playlistThumbnil={item.playlistThumbnil}
+                  playlistTitle={item.playListArray}
+                  channelTitle={item.channelTitle}
+                />
+              </Grid>
+            ))}
+          </Grid>
+        )}
+      </Container>
     </>
   );
 };

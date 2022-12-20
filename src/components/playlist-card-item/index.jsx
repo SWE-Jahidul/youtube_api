@@ -11,6 +11,10 @@ export default function PlayListCard({
   playlistTitle,
   channelTitle,
 }) {
+
+  
+  console.log('playlistThumbnil', playlistThumbnil);
+
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardMedia

@@ -17,7 +17,6 @@ const getPlayListItem = async (playListId, pageToken = "", result = []) => {
 
 const getPlayList = async (playListId) => {
   const URL = `https://youtube.googleapis.com/youtube/v3/playlists?part=snippet&id=${playListId}&key=${key}`;
-
   const { data } = await axios.get(URL);
   let playlistItems = await getPlayListItem(playListId);
 
@@ -28,7 +27,7 @@ const getPlayList = async (playListId) => {
     thumbnails,
     channelTitle,
   } = data?.items[0]?.snippet;
-
+  console.log("playlist 1001", playlistItems);
   playlistItems = playlistItems.map((item) => {
     const {
       title,
@@ -48,11 +47,11 @@ const getPlayList = async (playListId) => {
     playListId,
     playlistTitle,
     playlistDescription,
-    playlistThumbnil : thumbnails.default,
+    playlistThumbnil: thumbnails.default,
     channelId,
     channelTitle,
-    playlistItems
-  }
+    playlistItems,
+  };
 };
 
-export default getPlayListItem;
+export default getPlayList;

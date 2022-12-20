@@ -23,7 +23,7 @@ const usePlaylist = () => {
       setState(prev => ({
         ...prev,
         playLists:{
-          ...prev.playlists,
+          ...prev.playLists,
           [playListId] : playlist
         }
       }))
@@ -32,9 +32,6 @@ const usePlaylist = () => {
     } finally {
       setloding(false);
     }
-
-
-
   };
 
   const addToFavorites = (playlistId) => {
