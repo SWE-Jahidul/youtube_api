@@ -5,18 +5,22 @@ import CardContent from "@mui/material/CardContent";
 import CardActions from "@mui/material/CardActions";
 import Typography from "@mui/material/Typography";
 import { Button } from "@mui/material";
+import { Box, Stack } from "@mui/system";
 
 export default function PlayListCard({
   playlistThumbnil,
   playlistTitle,
   channelTitle,
 }) {
-
-  
-  console.log('playlistThumbnil', playlistThumbnil);
-
   return (
-    <Card sx={{ maxWidth: 345 }}>
+    <Card
+      sx={{
+        height: "100%",
+        display: "flex",
+        flexDirection: "column",
+        margin: 1,
+      }}
+    >
       <CardMedia
         component="img"
         image={playlistThumbnil.url}
@@ -24,14 +28,34 @@ export default function PlayListCard({
       />
       <CardContent>
         <Typography variant="h5" color="text.primary">
-          {playlistTitle}
+          {`${
+            playlistTitle.length > 50
+              ? playlistTitle.substr(0, 50) + "..."
+              : playlistTitle
+          }`}
         </Typography>
         <Typography variant="h5" color="text.secoundary">
           {channelTitle}
         </Typography>
       </CardContent>
-      <CardActions disableSpacing>
-        <Button>Play</Button>
+      <Box
+        sx={{
+          flexGrow: 1,
+        }}
+      ></Box>
+
+      <CardActions
+        disableSpacing
+        sx={{
+          mt: "auto",
+        }}
+      >
+        <Button>
+        <Stack drection={'row'} spacing={1} alignItems={'center'}>
+            {/* <PlayCircleOutline />  */}
+            <Typography variant="body2" fontWeight={600}>Start Tutorials</Typography>
+         </Stack>
+        </Button>
       </CardActions>
     </Card>
   );
