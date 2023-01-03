@@ -4,12 +4,13 @@ import storage from "../utils/Storage";
 
 const STORAGE_KEY = "cy__playlist__state";
 
+const INIT_STATE = {
+  playLists: {},
+  recentPlayLists: [],
+  favorites: [],
+};
 const usePlaylist = () => {
-  const [state, setState] = useState({
-    playLists: {},
-    recentPlayLists: [],
-    favorites: [],
-  });
+  const [state, setState] = useState(INIT_STATE);
 
   const [error, setError] = useState("");
   const [loding, setloding] = useState(false);
@@ -22,7 +23,9 @@ const usePlaylist = () => {
   }, []);
 
   useEffect(() => {
+    if (state != INIT_STATE ) {
     storage.save(STORAGE_KEY, state);
+    }
   }, [state]);
 
   const getPlayListById = async (playListId, force = false) => {
