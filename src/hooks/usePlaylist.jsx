@@ -2,9 +2,7 @@ import { useEffect, useState } from "react";
 import getPlayList from "../api";
 import storage from "../utils/Storage";
 
-
-const STORAGE_KEY = 'cy__playlist__state';
-
+const STORAGE_KEY = "cy__playlist__state";
 
 const usePlaylist = () => {
   const [state, setState] = useState({
@@ -16,16 +14,16 @@ const usePlaylist = () => {
   const [error, setError] = useState("");
   const [loding, setloding] = useState(false);
 
-
-  useEffect(() =>{
-
-    const state = storage.get(STORAGE_KEY)
-    if(!state){
-      
-      setState({ ...state })
+  useEffect(() => {
+    const state = storage.get(STORAGE_KEY);
+    if (state) {
+      setState({ ...state });
     }
+  }, []);
 
-  },[])
+  useEffect(() => {
+    storage.save(STORAGE_KEY, state);
+  }, [state]);
 
   const getPlayListById = async (playListId, force = false) => {
     if (state.playLists[playListId] && !force) {
@@ -36,13 +34,13 @@ const usePlaylist = () => {
     try {
       const playlist = await getPlayList(playListId);
       setError("");
-      setState(prev => ({
+      setState((prev) => ({
         ...prev,
-        playLists:{
+        playLists: {
           ...prev.playLists,
-          [playListId] : playlist
-        }
-      }))
+          [playListId]: playlist,
+        },
+      }));
     } catch (e) {
       setError(e.response?.data?.error?.message || "Something wenr wrong!");
     } finally {

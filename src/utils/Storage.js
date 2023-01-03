@@ -4,10 +4,11 @@ class Storage {
   }
   get(key) {
     const json = localStorage.getItem(key);
-    return JSON.parse(json);
+    return JSON.parse(json)
   }
 }
 
 const storage = new Storage();
 
 export default storage;
+ 
