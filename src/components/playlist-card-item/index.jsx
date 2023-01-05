@@ -6,6 +6,7 @@ import CardActions from "@mui/material/CardActions";
 import Typography from "@mui/material/Typography";
 import { Button } from "@mui/material";
 import { Box, Stack } from "@mui/system";
+import { Link } from "react-router-dom";
 
 export default function PlayListCard({
   playlistThumbnil,
@@ -50,7 +51,7 @@ export default function PlayListCard({
           mt: "auto",
         }}
       >
-        <Button>
+        <Button to='/youtubeplayer' component={Link}>
         <Stack drection={'row'} spacing={1} alignItems={'center'}>
             {/* <PlayCircleOutline />  */}
             <Typography variant="body2" fontWeight={600}>Start Tutorials</Typography>

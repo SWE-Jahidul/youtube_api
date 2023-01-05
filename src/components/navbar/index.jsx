@@ -7,7 +7,8 @@ import { Stack } from "@mui/system";
 import { Button, Container } from "@mui/material";
 import { useState } from "react";
 import PlaylistFrom from "../playlist-form";
-
+import { Link as RouterLink } from "react-router-dom";
+import Link from "@mui/material/Link";
 const Navbar = ({ getPlayListById }) => {
   const [open, setOpen] = useState(false);
 
@@ -29,8 +30,19 @@ const Navbar = ({ getPlayListById }) => {
         <Container maxWidth={"lg"}>
           <Toolbar>
             <Stack sx={{ flexGrow: 1 }}>
-              <Typography variant="h6">Clean Youtube</Typography>
-              <Typography variant="body1">by Jahidul Islam </Typography>
+              <Link
+                to="/"
+                component={RouterLink}
+                sx={{ textDecoration: "none", color: "black" }}
+              >
+                <Typography variant="h6">Clean Youtube</Typography>
+              </Link>
+              <Link href="https://google.com" target={"_blank"}
+              
+              sx={{ textDecoration : 'none' , color:'black'}}
+              >
+                <Typography variant="body1">by Jahidul Islam </Typography>
+              </Link>
             </Stack>
             <Button variant="contained" onClick={handleClickOpen}>
               Add Playlist
