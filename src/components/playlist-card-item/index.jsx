@@ -12,6 +12,7 @@ export default function PlayListCard({
   playlistThumbnil,
   playlistTitle,
   channelTitle,
+  playlistId
 }) {
   return (
     <Card
@@ -50,13 +51,16 @@ export default function PlayListCard({
         sx={{
           mt: "auto",
         }}
-      >
-        <Button to='/youtubeplayer' component={Link}>
+      ><Link to="/youtubeplayer">
+<Button>
         <Stack drection={'row'} spacing={1} alignItems={'center'}>
             {/* <PlayCircleOutline />  */}
             <Typography variant="body2" fontWeight={600}>Start Tutorials</Typography>
-         </Stack>
-        </Button>
+         </Stack>        </Button>
+
+        </Link>
+
+        
       </CardActions>
     </Card>
   );

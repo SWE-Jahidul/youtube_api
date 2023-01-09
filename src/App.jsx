@@ -21,7 +21,8 @@ const HomePage = ({ playListArray }) => {
           {playListArray.map((item) => (
             <Grid item sx={12} md={6} lg={4} mb={2}>
               <PlayListCard
-                key={item.id}
+                key={item.playlistId}
+                playlistId={item.playlistId}
                 playlistThumbnil={item.playlistThumbnil}
                 playlistTitle={item.playlistTitle}
                 channelTitle={item.channelTitle}
@@ -58,6 +59,7 @@ const App = () => {
 
   const playListArray = Object.values(playLists);
 
+  console.log(playListArray);
   return (
     <>
       <BrowserRouter>
@@ -65,11 +67,12 @@ const App = () => {
         <Navbar getPlayListById={getPlayListById} />
 
         <Routes>
+          <Route path="/youtubeplayer" element={<YoutubePlayerPage />} />
+
           <Route
             path="/"
             element={<HomePage playListArray={playListArray} />}
           />
-          <Route path="/youtubeplayer" element={<YoutubePlayerPage />} />
 
           <Route path="*" element={<NotFound />} />
         </Routes>
