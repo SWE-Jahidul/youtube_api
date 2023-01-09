@@ -39,6 +39,9 @@ export default function PlayListCard({
         <Typography variant="h5" color="text.secoundary">
           {channelTitle}
         </Typography>
+
+ 
+
       </CardContent>
       <Box
         sx={{
@@ -51,16 +54,14 @@ export default function PlayListCard({
         sx={{
           mt: "auto",
         }}
-      ><Link to="/youtubeplayer">
-<Button>
+      >
+       
+        <Button to= {`/youtubeplayer/${playlistId}`} component={Link}>
         <Stack drection={'row'} spacing={1} alignItems={'center'}>
             {/* <PlayCircleOutline />  */}
             <Typography variant="body2" fontWeight={600}>Start Tutorials</Typography>
-         </Stack>        </Button>
-
-        </Link>
-
-        
+         </Stack>
+        </Button>
       </CardActions>
     </Card>
   );

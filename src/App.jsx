@@ -43,16 +43,13 @@ const NotFound = () => (
   </Container>
 );
 
-const YoutubePlayerPage = () => {
+const YoutubePlayerPage = () => (
   <Container maxWidth="lg" sx={{ marginTop: 16 }}>
     <Typography variant="h2" align="center">
-      404 Page Not Found 888 Lorem ipsum dolor sit amet, consectetur adipisicing
-      elit. A atque perspiciatis laborum quo ut dolorum temporibus dignissimos
-      inventore perferendis autem omnis explicabo doloribus natus, harum
-      deleniti obcaecati iusto ipsa esse.
+      Youtube
     </Typography>
-  </Container>;
-};
+  </Container>
+);
 
 const App = () => {
   const { getPlayListById, playLists, error, loding } = usePlaylist();
@@ -67,15 +64,19 @@ const App = () => {
         <Navbar getPlayListById={getPlayListById} />
 
         <Routes>
-          <Route path="/youtubeplayer" element={<YoutubePlayerPage />} />
-
+          {" "}
+         
           <Route
             path="/"
             element={<HomePage playListArray={playListArray} />}
+          /> 
+          <Route
+            path="/youtubeplayer/:playListId"
+            element={<YoutubePlayerPage  />}
           />
-
           <Route path="*" element={<NotFound />} />
         </Routes>
+
       </BrowserRouter>
     </>
   );
