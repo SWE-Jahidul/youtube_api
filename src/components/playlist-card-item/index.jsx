@@ -39,9 +39,6 @@ export default function PlayListCard({
         <Typography variant="h5" color="text.secoundary">
           {channelTitle}
         </Typography>
-
- 
-
       </CardContent>
       <Box
         sx={{
