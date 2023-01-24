@@ -2,13 +2,22 @@ import { CssBaseline, Grid, Typography } from "@mui/material";
 import { Container, Stack } from "@mui/system";
 import { useEffect } from "react";
 import { BrowserRouter, Routes, Route, useParams } from "react-router-dom";
-import getPlayList from "./api";
 import Navbar from "./components/navbar";
 import PlayListCard from "./components/playlist-card-item";
 import usePlaylist from "./hooks/usePlaylist";
+import {useStoreActions} from 'easy-peasy';
 
+
+const playlistId = 'PLkXqiFExuaQFOIhcuwsGTdhGfNXRqVPMd';
 const HomePage = ({ playListArray }) => {
-  console.log("-----", playListArray);
+  const playList = useStoreActions((actions) => actions.playList)
+
+  console.log(playList);
+  useEffect(() =>{
+
+    playList.getPlayListData(playlistId);
+  },[])
+
   return (
     <Container maxWidth="lg" sx={{ marginTop: 16 }}>
       {playListArray.length > 0 && (
@@ -48,6 +57,7 @@ const YoutubePlayerPage = ({ playLists }) => {
   const { playListId } = useParams();
   const current = playLists[playListId];
   if (!current) return;
+  
   return (
     <Container maxWidth="lg" sx={{ marginTop: 16 }}>
       <Typography variant="h2" align="center">
